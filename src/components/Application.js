@@ -4,13 +4,16 @@ import axios from 'axios';
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 export default function Application() {
+
+
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   const setDay = day => setState({ ...state, day });
@@ -18,22 +21,45 @@ export default function Application() {
   useEffect(() => {
     Promise.all([
       Promise.resolve(axios.get('/api/days')),
-      Promise.resolve(axios.get('/api/appointments'))
+      Promise.resolve(axios.get('/api/appointments')),
+      Promise.resolve(axios.get('/api/interviewers'))
     ]).then((all) => {
-      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data }));
+      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, [])
 
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
+      .then(response => {
+        setState({ ...state, appointments })
+        return response
+      })
+  }
+  const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const schedule = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview)
     return (
       <Appointment
-        key={appointment.id}
         {...appointment}
+        key={appointment.id}
+        interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+
       />
     )
   });
+
 
   return (
     <main className="layout">
@@ -48,9 +74,8 @@ export default function Application() {
           <DayList
             days={state.days}
             day={state.day}
-            setDay={day => {
-              setDay(day);
-            }}
+            bookInterview={bookInterview}
+            setDay={setDay}
           />
         </nav>
         <img
@@ -61,6 +86,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         {schedule}
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
       </section>
     </main>
   );

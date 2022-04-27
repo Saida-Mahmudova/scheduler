@@ -18,6 +18,8 @@ import Confirm from 'components/Appointment/Confirm';
 import Status from 'components/Appointment/Status';
 import Error from 'components/Appointment/Error';
 import Form from 'components/Appointment/Form'
+import useVisualMode from 'hooks/useVisualMode';
+
 
 storiesOf("Button", module)
   .addParameters({
