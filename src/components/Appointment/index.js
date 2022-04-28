@@ -49,11 +49,15 @@ export default function Appointment(props) {
   }
 
   function destroy(event) {
-    transition(DELETING, true);
-    props
-      .cancelInterview(props.id)
-      .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
+    if (mode === SHOW) {
+      transition(CONFIRM);
+    } else {
+      transition(DELETING, true);
+      props
+        .cancelInterview(props.id)
+        .then(() => transition(EMPTY))
+        .catch(error => transition(ERROR_DELETE, true));
+    }
   }
 
   function edit() {

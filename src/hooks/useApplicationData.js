@@ -66,9 +66,9 @@ export default function useApplicationData() {
     let daysOfWeek = state.days
     daysOfWeek[dayOfWeek] = day;
     return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview: interview })
-      .then(res => {
+      .then(result => {
         setState({ ...state, appointments, daysOfWeek })
-        return res
+        return result;
       })
   }
 
@@ -94,9 +94,9 @@ export default function useApplicationData() {
     daysOfWeek[dayOfWeek] = day;
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(res => {
+      .then(result => {
         setState({ ...state, appointments, daysOfWeek })
-        return res
+        return result;
       })
   }
   return {

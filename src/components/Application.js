@@ -7,8 +7,6 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application() {
-
-
   const {
     state,
     setDay,
@@ -60,6 +58,8 @@ export default function Application() {
       </section>
       <section className="schedule">
         {schedule}
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} cancelInterview={cancelInterview}
+        />
       </section>
     </main>
   );
