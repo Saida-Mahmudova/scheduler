@@ -4,11 +4,11 @@ import Header from './Header';
 import Show from './Show';
 import Empty from "./Empty";
 import Form from "./Form";
-import useVisualMode from "hooks/useVisualMode";
 import Status from './Status';
 import Confirm from './Confirm';
 import Error from './Error';
 
+import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
   const EMPTY = 'EMPTY';
@@ -91,8 +91,8 @@ export default function Appointment(props) {
         />}
       {mode === EDIT &&
         <Form
-          name={props.interview.student}
-          value={props.interview.interviewer.id}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}
           onCancel={back}
