@@ -25,13 +25,13 @@ npm run storybook
 
 ## Final Product
 
-!["Screenshot of Scheduler"](https://github.com/Saida-Mahmudova/tweeter/blob/master/docs/desktop-view.png)
+!["Screenshot for general view"](https://github.com/Saida-Mahmudova/scheduler/blob/master/docs/general-view.png)
 
-!["Screenshot of Creating Appointment"](https://github.com/Saida-Mahmudova/tweeter/blob/master/docs/mobile-view.png)
+!["Screenshot of Creating Appointment"](https://github.com/Saida-Mahmudova/scheduler/blob/master/docs/create-appointment.png)
 
-!["Screenshot of Confirmation"](https://github.com/Saida-Mahmudova/tweeter/blob/master/docs/mobile-view.png)
+!["Screenshot of Confirmation"](https://github.com/Saida-Mahmudova/scheduler/blob/master/docs/confirmation.png)
 
-!["Screenshot of Editing Appointment"](https://github.com/Saida-Mahmudova/tweeter/blob/master/docs/mobile-view.png)
+!["Screenshot of Editing Appointment"](https://github.com/Saida-Mahmudova/scheduler/blob/master/docs/editing.png)
 
 ## Getting Started
 
