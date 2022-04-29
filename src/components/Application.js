@@ -13,6 +13,7 @@ export default function Application() {
     bookInterview,
     cancelInterview
   } = useApplicationData();
+
   const interviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
@@ -26,11 +27,9 @@ export default function Application() {
         interviewers={interviewers}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
-
       />
     )
   });
-
 
   return (
     <main className="layout">

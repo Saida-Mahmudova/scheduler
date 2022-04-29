@@ -11,14 +11,14 @@ export default function useVisualMode(initial) {
     } else {
       setMode(mode)
     }
-  }
+  };
 
   const back = () => {
     if (history.length > 1) {
       history.pop();
       setMode(history[history.length - 1])
     }
-  }
+  };
 
   return { mode, transition, back }
 }
